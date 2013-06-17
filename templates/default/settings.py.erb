@@ -1,0 +1,141 @@
+"""
+This file dynamically written by Chef on <%= node['fqdn'] %>
+Any changes will be automatically overwritten.
+"""
+
+"""
+Shared settings
+"""
+
+# The path for the Redis unix socket
+REDIS_SOCKET_PATH='<%= node['skyline']['redis_socket_path'] %>'
+
+# The Skyline logs directory. Do not include a trailing slash.
+LOG_PATH = '<%= node['skyline']['log_path'] %>'
+
+# The Skyline pids directory. Do not include a trailing slash.
+PID_PATH = '<%= node['skyline']['pid_path'] %>'
+
+# Metrics will be prefixed with this value in Redis.
+FULL_NAMESPACE = '<%= node['skyline']['full_namespace'] %>'
+
+# The Horizon agent will make T'd writes to both the full namespace and the 
+# mini namespace. Oculus gets its data from everything in the mini namespace.
+MINI_NAMESPACE = '<%= node['skyline']['mini_namespace'] %>'
+
+# This is the rolling duration that will be stored in Redis. Be sure to pick a
+# value that suits your memory capacity, your CPU capacity, and your overall
+# metrics count. Longer durations take a longer to analyze, but they can
+# help the algorithms reduce the noise and provide more accurate anomaly
+# detection.
+FULL_DURATION = <%= node['skyline']['full_duration'] %>
+
+# This is the duration of the 'mini' namespace, if you are also using the 
+# Oculus service. It is also the duration of data that is displayed in the 
+# web app 'mini' view.
+MINI_DURATION = <%= node['skyline']['mini_duration'] %>
+
+# If you have a Graphite host set up, set this metric to get graphs on
+# Skyline and Horizon. Include http://.
+GRAPHITE_HOST = '<%= node['skyline']['graphite_host'] %>'
+
+# If you have Oculus set up, set this metric to set the clickthrough
+# on the webapp. Include http://.
+OCULUS_HOST = '<%= node['skyline']['oculus_host'] %>'
+
+""" 
+Analyzer settings 
+"""
+
+# This is the location the Skyline agent will write the anomalies file to disk. 
+# It needs to be in a location accessible to the webapp.
+ANOMALY_DUMP = '<%= node['skyline']['analyzer']['anomaly_dump'] %>'
+
+# This is the number of processes that the Skyline analyzer will spawn.
+# Analysis is a very CPU-intensive procedure. You will see optimal results
+# if you set ANALYZER_PROCESSES to several less than the total number of
+# CPUs on your box. Be sure to leave some CPU room for the Horizon workers, 
+# and for Redis.
+ANALYZER_PROCESSES = <%= node['skyline']['analyzer']['analyzer_processes'] %>
+
+# This is the duration, in seconds, for a metric to become 'stale' and for 
+# the analyzer to ignore it until new datapoints are added. 'Staleness' means
+# that a datapoint has not been added for STALE_PERIOD seconds.
+STALE_PERIOD = <%= node['skyline']['analyzer']['stale_period'] %>
+
+# This is the minimum length of a timeseries, in datapoints, for the analyzer
+# to recognize it as a complete series.
+MIN_TOLERABLE_LENGTH = <%= node['skyline']['analyzer']['min_tolerable_length'] %>
+
+# Sometimes a metric will continually transmit the same number. There's no need
+# to analyze metrics that remain boring like this, so this setting determines
+# the amount of boring datapoints that will be allowed to accumulate before the
+# analyzer skips over the metric. If the metric becomes noisy again, the
+# analyzer will stop ignoring it.
+MAX_TOLERABLE_BOREDOM = <%= node['skyline']['analyzer']['max_tolerable_boredom'] %>
+
+# The canary metric should be a metric with a very high, reliable resolution
+# that you can use to gauge the status of the system as a whole.
+CANARY_METRIC = '<%= node['skyline']['analyzer']['canary_metric'] %>'
+
+# These are the algorithms that the Analyzer will run. To add a new algorithm,
+# you must both define the algorithm in algorithms.py and add its name here.
+ALGORITHMS = <%= node['skyline']['analyzer']['algorithms'].to_s %>
+
+# This is the number of algorithms that must return True before a metric is
+# classified as anomalous.
+CONSENSUS = <%= node['skyline']['analyzer']['consensus'] %>
+
+"""
+Horizon settings
+"""
+# This is the number of worker processes that will consume from the Horizon
+# queue.
+WORKER_PROCESSES = <%= node['skyline']['horizon']['worker_processes'] %>
+
+# This is the port that listens for Graphite pickles over TCP, sent by Graphite's
+# carbon-relay agent.
+PICKLE_PORT = <%= node['skyline']['horizon']['pickle_port'] %>
+
+# This is the port that listens for Messagepack-encoded UDP packets.
+UDP_PORT = <%= node['skyline']['horizon']['udp_port'] %>
+
+# This is how big a 'chunk' of metrics will be before they are added onto
+# the shared queue for processing into Redis. If you are noticing that Horizon
+# is having trouble consuming metrics, try setting this value a higher.
+CHUNK_SIZE = <%= node['skyline']['horizon']['chunk_size'] %>
+
+# This is the maximum allowable length of the processing queue before new
+# chunks are prevented from being added. If you consistently fill up the 
+# processing queue, a higher MAX_QUEUE_SIZE will not save you. It most likely 
+# means that the workers do not have enough CPU alotted in order to process the 
+# queue on time. Try increasing CHUNK_SIZE, decreasing ANALYZER_PROCESSES, or 
+# decreasing ROOMBA_PROCESSES.
+MAX_QUEUE_SIZE = <%= node['skyline']['horizon']['max_queue_size'] %>
+
+# This is the number of Roomba processes that will be spawned to trim
+# timeseries in order to keep them at FULL_DURATION. Keep this number small, 
+# as it is not important that metrics be exactly FULL_DURATION *all* the time.
+ROOMBA_PROCESSES = <%= node['skyline']['horizon']['roomba_processes'] %>
+
+# The Horizon agent will ignore incoming datapoints if their timestamp
+# is older than MAX_RESOLUTION seconds ago.
+MAX_RESOLUTION = <%= node['skyline']['horizon']['max_resolution'] %>
+
+# These are metrics that, for whatever reason, you do not want to store 
+# in Skyline. The Listener will check to see if each incoming metrics
+# contains anything in the skip list. It is generally wise to skip entire
+# namespaces by adding a '.' at the end of the skipped item - otherwise 
+# you might skip things you don't intend to.
+SKIP_LIST = <%= node['skyline']['horizon']['skip_list'].to_s %>
+
+
+"""
+Webapp settings
+"""
+
+# The IP address for the webapp
+WEBAPP_IP = '<%= node['skyline']['webapp']['webapp_ip'] %>'
+
+# The port for the webapp
+WEBAPP_PORT = <%= node['skyline']['webapp']['webapp_port'] %>
