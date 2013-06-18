@@ -1,6 +1,5 @@
 
-include_recipe "redis::server"
-#include_recipe "skyline::redis"
+include_recipe "skyline::redis"
 include_recipe "scipy"
 
 node['skyline']['pip_packages'].each do |pp|

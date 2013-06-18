@@ -1,22 +1,4 @@
 
-set['redis']['config']['activerehashing'] = true
-set['redis']['config']['appendfsync'] = "no"
-#set['redis']['config']['auto_aof_rewrite_min_size'] = "64mb"
-#set['redis']['config']['auto_aof_rewrite_percentage'] = 100
-#set['redis']['config']['client_output_buffer_limit'] = [
-#  'normal 0 0 0',
-#  'slave 0 0 0',
-#  'pubsub 32mb 8mb 60'
-#]
-set['redis']['config']['configure_no_appendfsync_on_rewrite'] = true
-set['redis']['config']['configure_slowlog'] = true
-#set['redis']['config']['lua_time_limit'] = 5000
-set['redis']['config']['no_appendfsync_on_rewrite'] = true
-set['redis']['config']['slowlog_max_len'] = 128
-set['redis']['config']['timeout'] = 0
-#set['redis']['config']['unixsocket'] = "/tmp/redis.sock"
-#set['redis']['config']['unixsocketperms'] = 777
-
 default['skyline']['pip_packages'] = %w{
   redis
   hiredis
