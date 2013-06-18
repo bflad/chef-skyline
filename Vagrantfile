@@ -46,7 +46,13 @@ Vagrant.configure("2") do |config|
     chef.provisioning_path = guest_cache_path
     chef.log_level         = :debug
 
-    chef.json = { }
+    chef.json = {
+      "skyline" => {
+        "webapp" => {
+          "webapp_ip" => "0.0.0.0"
+        }
+      }
+    }
 
     chef.run_list = %w{
       recipe[skyline]
