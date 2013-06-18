@@ -22,17 +22,21 @@ node.set['redis']['config']['timeout'] = 0
 #node.set['redis']['config']['unixsocket'] = "/tmp/redis.sock"
 #node.set['redis']['config']['unixsocketperms'] = 777
 
-case node['platform']
-when "amazon"
-  node.set['redis']['install_type'] = "source"
-when "centos", "oracle", "redhat", "scientific"
-  node.set['redis']['install_type'] = "source" if node['platform_version'].to_i <= 6
+case node['platform_family']
 when "debian"
-  node.set['redis']['install_type'] = "source"
+  if node['platform'] == "debian"
+    node.set['redis']['install_type'] = "source"
+  elsif node['platform_version'].to_i <= 12
+    node.set['redis']['install_type'] = "source"
+  end
 when "fedora"
-  node.set['redis']['install_type'] = "source" if node['platform_version'].to_i <= 16
-when "ubuntu"
-  node.set['redis']['install_type'] = "source" if node['platform_version'].to_i <= 12
+  node.set['redis']['install_type'] = "source" if node['platform_version'].to_i <= 16 
+when "rhel"
+  if node['platform'] == "amazon"
+    node.set['redis']['install_type'] = "source"
+  elsif node['platform_version'].to_i <= 6
+    node.set['redis']['install_type'] = "source"
+  end
 end
 
 include_recipe "redis::install"
