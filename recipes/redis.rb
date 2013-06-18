@@ -23,8 +23,12 @@ node.set['redis']['config']['timeout'] = 0
 #node.set['redis']['config']['unixsocketperms'] = 777
 
 case node['platform']
+when "amazon"
+  node.set['redis']['install_type'] = "source"
 when "centos", "oracle", "redhat", "scientific"
   node.set['redis']['install_type'] = "source" if node['platform_version'].to_i <= 6
+when "debian"
+  node.set['redis']['install_type'] = "source"
 when "fedora"
   node.set['redis']['install_type'] = "source" if node['platform_version'].to_i <= 16
 when "ubuntu"
