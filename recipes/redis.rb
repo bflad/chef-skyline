@@ -76,7 +76,7 @@ if node['redis']['install_type'] == "source"
     variables(
       :conf_dir => node['redis']['conf_dir'],
       :logfile => node['redis']['config']['logfile'],
-      :name => "server",
+      :name => "redis",
       :pidfile => node['redis']['config']['pidfile'],
       :port => node['redis']['config']['port'],
       :user => node['redis']['user']
