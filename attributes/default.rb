@@ -1,15 +1,15 @@
 
 case node['platform_family']
 when "debian"
-  default['skyline']['packages'] = %{
+  default['skyline']['packages'] = %w{
     netcat
   }
 when "rhel"
-  default['skyline']['packages'] = %{
-    netcat
+  default['skyline']['packages'] = %w{
+    nc
   }
 else
-  default['skyline']['packages'] = %{}
+  default['skyline']['packages'] = %w{}
 end
 
 default['skyline']['pip_packages'] = %w{
