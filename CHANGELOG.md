@@ -1,3 +1,7 @@
+## 0.1.5
+
+* Add default packages for install, starting with netcat which is used by skyline source code
+
 ## 0.1.4
 
 * Set redis logfile attribute if redis source install and left defaulted to "stdout"

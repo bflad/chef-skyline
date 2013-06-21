@@ -1,4 +1,17 @@
 
+case node['platform_family']
+when "debian"
+  default['skyline']['packages'] = %{
+    netcat
+  }
+when "rhel"
+  default['skyline']['packages'] = %{
+    netcat
+  }
+else
+  default['skyline']['packages'] = %{}
+end
+
 default['skyline']['pip_packages'] = %w{
   redis
   hiredis

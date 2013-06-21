@@ -2,6 +2,10 @@
 include_recipe "skyline::redis"
 include_recipe "scipy"
 
+node['skyline']['packages'].each do |p|
+  package p
+end
+
 node['skyline']['pip_packages'].each do |pp|
   python_pip pp
 end
