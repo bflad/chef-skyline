@@ -1,3 +1,7 @@
+## 0.1.4
+
+* Set redis logfile attribute if redis source install and left defaulted to "stdout"
+
 ## 0.1.3
 
 * Always create redis log directory for redis source installs

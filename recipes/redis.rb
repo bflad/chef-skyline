@@ -42,6 +42,7 @@ end
 include_recipe "redis::install"
 
 if node['redis']['install_type'] == "source"
+  node.set['redis']['config']['logfile'] = "/var/log/redis/redis.log" if node['redis']['config']['logfile'] == "stdout"
   directory ::File.dirname(node['redis']['config']['logfile']) do
     owner node['redis']['user']
     group node['redis']['group']
