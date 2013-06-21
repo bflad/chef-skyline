@@ -46,7 +46,6 @@ if node['redis']['install_type'] == "source"
     owner node['redis']['user']
     group node['redis']['group']
     mode 00755
-    only_if { node['redis']['config']['logfile'].downcase != "stdout" }
   end
 
   directory node['redis']['conf_dir'] do
