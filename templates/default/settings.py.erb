@@ -93,6 +93,13 @@ Horizon settings
 # queue.
 WORKER_PROCESSES = <%= node['skyline']['horizon']['worker_processes'] %>
 
+# The IP address for Horizon to listen on.  Defaults to gethostname()
+<% if node['skyline']['horizon']['horizon_ip'] -%>
+HORIZON_IP = '<%= node['skyline']['horizon']['horizon_ip'] %>'
+<% else -%>
+# HORIZON_IP = '0.0.0.0'
+<% end -%>
+
 # This is the port that listens for Graphite pickles over TCP, sent by Graphite's
 # carbon-relay agent.
 PICKLE_PORT = <%= node['skyline']['horizon']['pickle_port'] %>

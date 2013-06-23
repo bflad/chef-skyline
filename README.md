@@ -66,6 +66,7 @@ These attributes are under the `node['skyline']['horizon']` namespace.
 Attribute | Description | Type | Default
 ----------|-------------|------|--------
 chunk_size | See templates/default/settings.py.erb | Fixnum | 10
+horizon_ip | See templates/default/settings.py.erb | String | nil
 max_queue_size | See templates/default/settings.py.erb | Fixnum | 500
 max_resolution | See templates/default/settings.py.erb | Fixnum | 1000
 pickle_port | See templates/default/settings.py.erb | Fixnum | 2024

@@ -61,6 +61,7 @@ default['skyline']['analyzer']['stale_period'] = 500
 # Horizon Settings
 
 default['skyline']['horizon']['chunk_size'] = 10
+default['skyline']['horizon']['horizon_ip'] = nil
 default['skyline']['horizon']['max_queue_size'] = 500
 default['skyline']['horizon']['max_resolution'] = 1000
 default['skyline']['horizon']['pickle_port'] = 2024

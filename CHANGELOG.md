@@ -1,3 +1,7 @@
+## 0.2.0
+
+* Add `node['skyline']['horizon']['horizon_ip']` attribute
+
 ## 0.1.5
 
 * Add default packages for install, starting with netcat which is used by skyline source code
