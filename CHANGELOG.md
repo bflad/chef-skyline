@@ -1,3 +1,7 @@
+## 0.3.0
+
+* Add unittest2 and mock to default pip packages (from Skyline requirements.txt)
+
 ## 0.2.0
 
 * Add `node['skyline']['horizon']['horizon_ip']` attribute

@@ -18,6 +18,8 @@ default['skyline']['pip_packages'] = %w{
   python-daemon
   flask
   simplejson
+  unittest2
+  mock
   patsy
   statsmodels
   msgpack-python
