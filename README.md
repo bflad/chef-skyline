@@ -75,6 +75,15 @@ skip_list | See templates/default/settings.py.erb | Array of Strings | []
 udp_port | See templates/default/settings.py.erb | Fixnum | 2025
 worker_processes | See templates/default/settings.py.erb | Fixnum | 2
 
+### Source Attributes
+
+These attributes are under the `node['skyline']['source']` namespace.
+
+Attribute | Description | Type | Default
+----------|-------------|------|--------
+repo | Source repository | String | git://github.com/etsy/skyline.git
+reference | Source reference | String | master
+
 ### Webapp Attributes
 
 These attributes are under the `node['skyline']['webapp']` namespace.
