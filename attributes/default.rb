@@ -30,7 +30,7 @@ default['skyline']['group'] = node['skyline']['user']
 
 # Shared Settings
 
-default['skyline']['full_duration'] = 86400
+default['skyline']['full_duration'] = 86_400
 default['skyline']['full_namespace'] = 'metrics.'
 default['skyline']['graphite_host'] = 'http://graphite.example.com'
 default['skyline']['install_dir'] = '/opt/skyline'
