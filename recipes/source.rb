@@ -1,5 +1,5 @@
 
-include_recipe "git"
+include_recipe 'git'
 
 git node['skyline']['install_dir'] do
   repository node['skyline']['source']['repo']
@@ -8,9 +8,9 @@ git node['skyline']['install_dir'] do
 end
 
 template "#{node['skyline']['install_dir']}/src/settings.py" do
-  source "settings.py.erb"
-  owner "root"
-  group "root"
+  source 'settings.py.erb'
+  owner 'root'
+  group 'root'
   mode 00644
 end
 

@@ -1,10 +1,10 @@
 
 case node['platform_family']
-when "debian"
+when 'debian'
   default['skyline']['packages'] = %w{
     netcat
   }
-when "rhel"
+when 'rhel'
   default['skyline']['packages'] = %w{
     nc
   }
@@ -25,20 +25,20 @@ default['skyline']['pip_packages'] = %w{
   msgpack-python
 }
 
-default['skyline']['user'] = "skyline"
+default['skyline']['user'] = 'skyline'
 default['skyline']['group'] = node['skyline']['user']
 
 # Shared Settings
 
 default['skyline']['full_duration'] = 86400
-default['skyline']['full_namespace'] = "metrics."
-default['skyline']['graphite_host'] = "http://graphite.example.com"
-default['skyline']['install_dir'] = "/opt/skyline"
-default['skyline']['log_path'] = "/var/log/skyline"
+default['skyline']['full_namespace'] = 'metrics.'
+default['skyline']['graphite_host'] = 'http://graphite.example.com'
+default['skyline']['install_dir'] = '/opt/skyline'
+default['skyline']['log_path'] = '/var/log/skyline'
 default['skyline']['mini_duration'] = 3600
-default['skyline']['mini_namespace'] = "mini."
-default['skyline']['oculus_host'] = "http://oculus.example.com"
-default['skyline']['pid_path'] = "/var/run/skyline"
+default['skyline']['mini_namespace'] = 'mini.'
+default['skyline']['oculus_host'] = 'http://oculus.example.com'
+default['skyline']['pid_path'] = '/var/run/skyline'
 default['skyline']['redis_socket_path'] = node['redis']['config']['unixsocket']
 
 # Analyzer Settings
@@ -53,8 +53,8 @@ default['skyline']['analyzer']['algorithms'] = %w{
   histogram_bins
 }
 default['skyline']['analyzer']['analyzer_processes'] = 5
-default['skyline']['analyzer']['anomaly_dump'] = "webapp/static/dump/anomalies.json"
-default['skyline']['analyzer']['canary_metric'] = "statsd.numStats"
+default['skyline']['analyzer']['anomaly_dump'] = 'webapp/static/dump/anomalies.json'
+default['skyline']['analyzer']['canary_metric'] = 'statsd.numStats'
 default['skyline']['analyzer']['consensus'] = 5
 default['skyline']['analyzer']['min_tolerable_length'] = 1
 default['skyline']['analyzer']['max_tolerable_boredom'] = 100
@@ -75,9 +75,9 @@ default['skyline']['horizon']['worker_processes'] = 2
 # Source Settings
 
 default['skyline']['source']['repo'] = 'git://github.com/etsy/skyline.git'
-default['skyline']['source']['reference'] = "master"
+default['skyline']['source']['reference'] = 'master'
 
 # Webapp Settings
 
-default['skyline']['webapp']['webapp_ip'] = "127.0.0.1"
+default['skyline']['webapp']['webapp_ip'] = '127.0.0.1'
 default['skyline']['webapp']['webapp_port'] = 1500
