@@ -13,8 +13,8 @@ end
 user node['skyline']['user'] do
   comment 'Skyline Service Account'
   supports :manage_home => true
-  system  true
-  action  :create
+  system true
+  action :create
 end
 
 directory node['skyline']['log_path'] do

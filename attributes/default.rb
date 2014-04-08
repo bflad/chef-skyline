@@ -1,18 +1,18 @@
 
 case node['platform_family']
 when 'debian'
-  default['skyline']['packages'] = %w{
+  default['skyline']['packages'] = %w(
     netcat
-  }
+)
 when 'rhel'
-  default['skyline']['packages'] = %w{
+  default['skyline']['packages'] = %w(
     nc
-  }
+)
 else
-  default['skyline']['packages'] = %w{}
+  default['skyline']['packages'] = %w()
 end
 
-default['skyline']['pip_packages'] = %w{
+default['skyline']['pip_packages'] = %w(
   redis
   hiredis
   python-daemon
@@ -23,7 +23,7 @@ default['skyline']['pip_packages'] = %w{
   patsy
   statsmodels
   msgpack-python
-}
+)
 
 default['skyline']['user'] = 'skyline'
 default['skyline']['group'] = node['skyline']['user']
@@ -43,7 +43,7 @@ default['skyline']['redis_socket_path'] = node['redis']['config']['unixsocket']
 
 # Analyzer Settings
 
-default['skyline']['analyzer']['algorithms'] = %w{
+default['skyline']['analyzer']['algorithms'] = %w(
   first_hour_average
   mean_subtraction_cumulation
   simple_stddev_from_moving_average
@@ -51,7 +51,7 @@ default['skyline']['analyzer']['algorithms'] = %w{
   least_squares
   grubbs
   histogram_bins
-}
+)
 default['skyline']['analyzer']['analyzer_processes'] = 5
 default['skyline']['analyzer']['anomaly_dump'] = 'webapp/static/dump/anomalies.json'
 default['skyline']['analyzer']['canary_metric'] = 'statsd.numStats'
