@@ -3,11 +3,11 @@ case node['platform_family']
 when 'debian'
   default['skyline']['packages'] = %w(
     netcat
-)
+  )
 when 'rhel'
   default['skyline']['packages'] = %w(
     nc
-)
+  )
 else
   default['skyline']['packages'] = %w()
 end
