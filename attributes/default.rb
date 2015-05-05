@@ -41,7 +41,7 @@ default['skyline']['oculus_host'] = 'http://oculus.example.com'
 default['skyline']['pid_path'] = '/var/run/skyline'
 default['skyline']['redis_socket_path'] = node['redis']['config']['unixsocket']
 default['skyline']['graph_url'] = ''
-default['skyline']['carbon_port'] = 
+default['skyline']['carbon_port'] = 2003
 
 # Analyzer Settings
 
