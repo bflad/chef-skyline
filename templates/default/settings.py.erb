@@ -8,7 +8,7 @@ Shared settings
 """
 
 # The path for the Redis unix socket
-REDIS_SOCKET_PATH='<%= node['skyline']['redis_socket_path'] %>'
+REDIS_SOCKET_PATH = '<%= node['skyline']['redis_socket_path'] %>'
 
 # The Skyline logs directory. Do not include a trailing slash.
 LOG_PATH = '<%= node['skyline']['log_path'] %>'
@@ -38,6 +38,13 @@ MINI_DURATION = <%= node['skyline']['mini_duration'] %>
 # If you have a Graphite host set up, set this metric to get graphs on
 # Skyline and Horizon. Include http://.
 GRAPHITE_HOST = '<%= node['skyline']['graphite_host'] %>'
+
+# The Graph url used to link to Graphite (Or another graphite dashboard)
+# %s will be replaced by the metric name
+GRAPH_URL = '<%= node['skyline']['graph_url'] %>'
+
+# If you have a Graphite host set up, set its Carbon port.
+CARBON_PORT = '<%= node['skyline']['carbon_port'] %>'
 
 # If you have Oculus set up, set this metric to set the clickthrough
 # on the webapp. Include http://.
@@ -74,6 +81,13 @@ MIN_TOLERABLE_LENGTH = <%= node['skyline']['analyzer']['min_tolerable_length'] %
 # analyzer will stop ignoring it.
 MAX_TOLERABLE_BOREDOM = <%= node['skyline']['analyzer']['max_tolerable_boredom'] %>
 
+# By default, the analyzer skips a metric if it it has transmitted a single
+# number MAX_TOLERABLE_BOREDOM times. Change this setting if you wish the size
+# of the ignored set to be higher (ie, ignore the metric if there have only
+# been two different values for the past MAX_TOLERABLE_BOREDOM datapoints).
+# This is useful for timeseries that often oscillate between two values.
+BOREDOM_SET_SIZE = <%= node['skyline']['analyzer']['boredom_set_size'] %>
+
 # The canary metric should be a metric with a very high, reliable resolution
 # that you can use to gauge the status of the system as a whole.
 CANARY_METRIC = '<%= node['skyline']['analyzer']['canary_metric'] %>'
@@ -85,6 +99,31 @@ ALGORITHMS = <%= node['skyline']['analyzer']['algorithms'].to_s %>
 # This is the number of algorithms that must return True before a metric is
 # classified as anomalous.
 CONSENSUS = <%= node['skyline']['analyzer']['consensus'] %>
+
+# This is to enable second order anomalies. This is an experimental feature, so
+# it's turned off by default.
+ENABLE_SECOND_ORDER = <%= node['skyline']['analyzer']['enable_second_order'] %>
+
+# This enables alerting.
+ENABLE_ALERTS = <%= node['skyline']['analyzer']['enable_alerts'] %>
+
+# This is the config for which metrics to alert on and which strategy to use for each.
+# Alerts will not fire twice within EXPIRATION_TIME, even if they trigger again.
+# Schema: (
+#          ("metric1", "smtp", EXPIRATION_TIME),
+#          ("metric2", "pagerduty", EXPIRATION_TIME),
+#          ("metric3", "hipchat", EXPIRATION_TIME),
+#         )
+ALERTS = <%= node['skyline']['analyzer']['alerts'] %>
+
+# Each alert module requires additional information.
+SMTP_OPTS = <%= node['skyline']['analyzer']['smtp_opts'] %>
+
+# HipChat alerts require python-simple-hipchat
+HIPCHAT_OPTS = <%= node['skyline']['analyzer']['hipchat_opts'] %>
+
+# PagerDuty alerts require pygerduty
+PAGERDUTY_OPTS = <%= node['skyline']['analyzer']['pagerduty_opts'] %>
 
 """
 Horizon settings
@@ -124,6 +163,13 @@ MAX_QUEUE_SIZE = <%= node['skyline']['horizon']['max_queue_size'] %>
 # timeseries in order to keep them at FULL_DURATION. Keep this number small, 
 # as it is not important that metrics be exactly FULL_DURATION *all* the time.
 ROOMBA_PROCESSES = <%= node['skyline']['horizon']['roomba_processes'] %>
+
+# Normally Roomba will clean up everything that is older than FULL_DURATION
+# if you have metrics that are not coming in every second, it can happen
+# that you'll end up with INCOMPLETE metrics.
+# With this setting Roomba will clean up evertyhing that is older than
+# FULL_DURATION + ROOMBA_GRACE_TIME
+ROOMBA_GRACE_TIME = <%= node['skyline']['horizon']['roomba_grace_time'] %>
 
 # The Horizon agent will ignore incoming datapoints if their timestamp
 # is older than MAX_RESOLUTION seconds ago.

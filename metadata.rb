@@ -4,7 +4,7 @@ maintainer_email 'bflad417@gmail.com'
 license 'Apache 2.0'
 description 'Installs/Configures Skyline'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.3.0'
+version '0.3.1'
 recipe 'skyline', 'Installs/Configures Skyline'
 recipe 'skyline::init', 'Symlinks Skyline init scripts and starts/enables services'
 recipe 'skyline::redis', 'Configures Redis for Skyline from template'
