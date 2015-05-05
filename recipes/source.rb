@@ -7,6 +7,12 @@ git node['skyline']['install_dir'] do
   action :sync
 end
 
+execute 'reset-to-commit-version' do
+  command "git reset --hard #{node['skyline']['source']['commit_hash']}"
+  cwd node['skyline']['install_dir']
+  action :run
+end
+
 template "#{node['skyline']['install_dir']}/src/settings.py" do
   source 'settings.py.erb'
   owner 'root'
