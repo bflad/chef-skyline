@@ -76,6 +76,7 @@ default['skyline']['horizon']['worker_processes'] = 2
 
 default['skyline']['source']['repo'] = 'git://github.com/etsy/skyline.git'
 default['skyline']['source']['reference'] = 'master'
+default['skyline']['source']['commit_hash'] = 'b5f90cad97fea2a7355b167d4e809bc2a166a356'
 
 # Webapp Settings
 
